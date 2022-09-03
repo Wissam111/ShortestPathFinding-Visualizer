@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid red;
+  margin: 0;
+}
+
+.Node {
+  background-color: #1d1d1d;
+  -webkit-box-shadow: 0 0 4px #000;
+          box-shadow: 0 0 4px #000;
+  width: 20px;
+  height: 20px;
+  color: white;
+  text-align: center;
+  -webkit-transition: 2s ease;
+  transition: 2s ease;
+}
+
+.Node:hover {
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+.grind-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (20px)[90];
+      grid-template-columns: repeat(90, 20px);
+  border: 2px solid red;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1em;
+}
+
+.Node-Enter {
+  background: gray;
+  -webkit-box-shadow: 0 0 2px gray 0 0 10px gray;
+          box-shadow: 0 0 2px gray 0 0 10px gray;
+}
+
+.node-visited {
+  background: wheat;
+}
+/*# sourceMappingURL=style.css.map */
