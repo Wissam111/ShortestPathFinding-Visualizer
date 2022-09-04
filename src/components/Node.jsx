@@ -45,7 +45,7 @@ function Node(props) {
             color: "green",
             fontSize: "18px",
           }}
-          className="fa fa-arrow-right"
+          className="fa fa-bullseye"
         ></i>
       )}
 

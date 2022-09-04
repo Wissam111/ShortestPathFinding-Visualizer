@@ -4,7 +4,7 @@ import Node from "./Node";
 import Dijkstra from "./algorithms/dijkstraAlgo";
 function Grid() {
   const [nodes, setNodes] = useState([]);
-  const [startNode, setStartNode] = useState({ row: 15, col: 13 });
+  const [startNode, setStartNode] = useState({ row: 15, col: 30 });
   const [endNode, setEndNode] = useState({ row: 15, col: 50 });
 
   const rows = 30;
@@ -36,11 +36,28 @@ function Grid() {
   }, []);
 
   function anitmationDij(dijVisited) {
-    for (let i = 0; i < dijVisited._visited.length; i++) {
+    for (let i = 0; i <= dijVisited._visited.length; i++) {
+      if (i == dijVisited._visited.length) {
+        setTimeout(() => {
+          anitmationSP(dijVisited);
+        }, 10 * i);
+        return;
+      }
       setTimeout(() => {
         const node = dijVisited._visited[i];
+
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "Node node-visited";
+      }, 10 * i);
+    }
+  }
+
+  function anitmationSP(dijVisited) {
+    for (let i = 0; i < dijVisited.shortPath.length; i++) {
+      setTimeout(() => {
+        const node = dijVisited.shortPath[i];
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node node-sp";
       }, 10 * i);
     }
   }
@@ -60,7 +77,6 @@ function Grid() {
   }
 
   function handleWallClick(row, col) {
-    console.log("row:", row, " col:", col);
     const updateWall = nodes.map((node) => {
       if (node.row == row && node.col == col) {
         return { ...node, isWall: true };
@@ -74,12 +90,7 @@ function Grid() {
     <div className="container">
       <div className="grind-container">
         {nodes.map((node) => (
-          <Node
-            key={node.key}
-            handleWallClick={handleWallClick}
-            // handleWallClick={handleWallClick(node.row, node.col)}
-            node={node}
-          />
+          <Node key={node.key} handleWallClick={handleWallClick} node={node} />
         ))}
       </div>
       <button onClick={handleDij}>Dij</button>

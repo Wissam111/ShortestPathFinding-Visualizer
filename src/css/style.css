@@ -60,4 +60,8 @@ body {
 .node-visited {
   background: wheat;
 }
+
+.node-sp {
+  background: #8eba8e !important;
+}
 /*# sourceMappingURL=style.css.map */
