@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;700&family=Poppins:wght@400;700&display=swap");
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 .container {
   width: 100%;
@@ -9,8 +11,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
+  // border: 2px solid red;
   margin: 0;
+  padding: 0;
 }
 .Node {
   background-color: #1d1d1d;
@@ -28,10 +31,12 @@ body {
 .grind-container {
   display: grid;
   grid-template-columns: repeat(90, 20px);
-  border: 2px solid red;
+  // border: 2px solid red;
   width: 100%;
   justify-content: center;
-  padding: 1em;
+  margin-bottom: 20em;
+
+  // padding: 1em;
 }
 .Node-Enter {
   background: gray;
@@ -47,4 +52,61 @@ body {
 }
 .node-sp {
   background: rgb(142, 186, 142) !important;
+}
+
+.instruction {
+  width: 100%;
+  height: 10vh;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    height: 100%;
+    list-style: none;
+    // border: 2px solid red;
+  }
+  li {
+    // border: 2px solid red;
+    width: 10%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    box-shadow: 2px 1.5px 10px black;
+    border-radius: 0.1em;
+  }
+}
+
+.mine-logo {
+  width: 20%;
+}
+.sp-icoon {
+  background: yellow;
+}
+
+.action-bar {
+  // border: 2px solid red;
+  width: 100%;
+  height: 10vh;
+  background: radial-gradient(
+    ellipse at center,
+    #373333 0,
+    rgba(75, 251, 181, 0) 100%
+  );
+}
+.action-links {
+  display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  position: relative;
+}
+.iconFind {
+  margin-right: 10em;
+  width: 5%;
+  // position: absolute;
+  // left: 0;
+  // top: 0.5em;
 }
