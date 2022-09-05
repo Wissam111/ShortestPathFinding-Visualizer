@@ -51,7 +51,7 @@ body {
   background: wheat;
 }
 .node-sp {
-  background: rgb(142, 186, 142) !important;
+  background: rgb(109, 182, 109) !important;
 }
 
 .instruction {
@@ -96,17 +96,65 @@ body {
     #373333 0,
     rgba(75, 251, 181, 0) 100%
   );
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .action-links {
   display: flex;
-  // justify-content: space-between;
-  // align-items: center;
   position: relative;
+  gap: 2em;
+  width: 60%;
+  height: 5vh;
+  // border: 2px solid red;
+  button {
+    width: 20%;
+    cursor: pointer;
+
+    // border: 2px solid red;
+  }
 }
 .iconFind {
   margin-right: 10em;
   width: 5%;
-  // position: absolute;
-  // left: 0;
-  // top: 0.5em;
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+}
+.actionBtn {
+  font-size: 1.1rem;
+  color: black;
+  border: 2px solid lightblue;
+  text-decoration: none;
+  transition: 0.5s;
+  color: white;
+
+  background: radial-gradient(
+    ellipse at center,
+    #fb4b4b 0,
+    rgba(75, 251, 181, 0) 100%
+  );
+
+  &:hover {
+    border-radius: 0.5em;
+  }
+}
+.runBtn {
+  background: radial-gradient(
+    ellipse at center,
+    #4bfb68 0,
+    rgba(75, 251, 181, 0) 100%
+  );
+}
+
+.clearBtn {
+  background: radial-gradient(
+    ellipse at center,
+    #383b39 0,
+    rgba(75, 251, 181, 0) 100%
+  );
+}
+
+.node-mine {
+  width: 90%;
 }

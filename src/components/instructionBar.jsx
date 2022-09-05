@@ -33,15 +33,15 @@ function InstructionBar() {
         </li>
         <li>
           <i
-            class="fa fa-square-o"
+            className="fa fa-square-o"
             style={{ background: "black" }}
             aria-hidden="true"
           ></i>
           Unvisited Node
         </li>
         <li>
-          <i class="fa fa-square-o sp-icoon" aria-hidden="true"></i> Shortest
-          Path
+          <i className="fa fa-square-o sp-icoon" aria-hidden="true"></i>{" "}
+          Shortest Path
         </li>
       </ul>
     </div>

@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import InstructionBar from "./instructionBar";
 import ActionBar from "./actionBar";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <div className="nav-bar">
-      <ActionBar />
+      <ActionBar
+        nodes={props.nodes}
+        rows={props.rows}
+        cols={props.cols}
+        handleClear={props.handleClear}
+        handleMine={props.handleMine}
+      />
       <InstructionBar />
     </div>
   );

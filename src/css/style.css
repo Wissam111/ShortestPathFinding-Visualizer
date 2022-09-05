@@ -63,7 +63,7 @@ body {
 }
 
 .node-sp {
-  background: #8eba8e !important;
+  background: #6db66d !important;
 }
 
 .instruction {
@@ -116,6 +116,15 @@ body {
   width: 100%;
   height: 10vh;
   background: radial-gradient(ellipse at center, #373333 0, rgba(75, 251, 181, 0) 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .action-links {
@@ -123,10 +132,48 @@ body {
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  gap: 2em;
+  width: 60%;
+  height: 5vh;
+}
+
+.action-links button {
+  width: 20%;
+  cursor: pointer;
 }
 
 .iconFind {
   margin-right: 10em;
   width: 5%;
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+}
+
+.actionBtn {
+  font-size: 1.1rem;
+  color: black;
+  border: 2px solid lightblue;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: white;
+  background: radial-gradient(ellipse at center, #fb4b4b 0, rgba(75, 251, 181, 0) 100%);
+}
+
+.actionBtn:hover {
+  border-radius: 0.5em;
+}
+
+.runBtn {
+  background: radial-gradient(ellipse at center, #4bfb68 0, rgba(75, 251, 181, 0) 100%);
+}
+
+.clearBtn {
+  background: radial-gradient(ellipse at center, #383b39 0, rgba(75, 251, 181, 0) 100%);
+}
+
+.node-mine {
+  width: 90%;
 }
 /*# sourceMappingURL=style.css.map */

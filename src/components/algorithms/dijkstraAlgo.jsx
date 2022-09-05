@@ -6,7 +6,7 @@ function Dijkstra(grid, startNode, rows, cols, endNode) {
   let shortPaths = [];
   for (let i = 0; i < grid.length; i++) {
     let obN = { path: [] };
-
+    obN.path.push(startNode);
     shortPaths.splice(grid[i].id, 0, obN);
   }
 
@@ -84,12 +84,11 @@ function relax(grid, dist, currNode, i, j, shortPaths, rows, cols) {
   let currWeight = currNode.value;
   let currNdPath = [...shortPaths[currNode.id].path];
   let neighborNode = grid.find((node) => node.row == i && node.col == j);
-
-  if (currWeight + 1 < neighborNode.value) {
+  let plusW = neighborNode.isMine ? 10 : 1;
+  if (currWeight + plusW < neighborNode.value) {
     currNdPath.push(neighborNode);
-
     shortPaths[neighborNode.id].path = currNdPath;
-    neighborNode.value = currWeight + 1;
+    neighborNode.value = currWeight + plusW;
     dist.splice(neighborNode.id, 0, neighborNode);
   }
 }
