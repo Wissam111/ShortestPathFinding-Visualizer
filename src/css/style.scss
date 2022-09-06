@@ -42,10 +42,6 @@ body {
   background: gray;
   box-shadow: 0 0 2px gray 0 0 10px gray;
 }
-// .Node-Out {
-//   background: #1d1d1d;
-//   box-shadow: 0 0 2px #000;
-// }
 
 .node-visited {
   background: wheat;
@@ -157,4 +153,16 @@ body {
 
 .node-mine {
   width: 90%;
+}
+.tec-dance {
+  width: 4%;
+}
+#algos {
+  font-size: 1rem;
+  margin-left: 0.3em;
+  background: radial-gradient(
+    ellipse at center,
+    #4b77fb 0,
+    rgba(75, 251, 181, 0) 100%
+  );
 }

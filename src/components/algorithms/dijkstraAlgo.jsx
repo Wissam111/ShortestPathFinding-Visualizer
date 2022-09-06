@@ -21,6 +21,7 @@ function Dijkstra(grid, startNode, rows, cols, endNode) {
       continue;
     }
     _visited.push(currNode);
+
     relax(
       grid,
       distances,

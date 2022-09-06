@@ -11,6 +11,8 @@ function Navbar(props) {
         cols={props.cols}
         handleClear={props.handleClear}
         handleMine={props.handleMine}
+        handleWall={props.handleWall}
+        mousePressed={props.mousePressed}
       />
       <InstructionBar />
     </div>

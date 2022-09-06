@@ -176,4 +176,14 @@ body {
 .node-mine {
   width: 90%;
 }
+
+.tec-dance {
+  width: 4%;
+}
+
+#algos {
+  font-size: 1rem;
+  margin-left: 0.3em;
+  background: radial-gradient(ellipse at center, #4b77fb 0, rgba(75, 251, 181, 0) 100%);
+}
 /*# sourceMappingURL=style.css.map */

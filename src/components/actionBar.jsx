@@ -16,7 +16,6 @@ function ActionBar(props) {
 
   const handleSelectAlgo = (e) => {
     setCurrAlgo(e.target.value);
-    console.log(e.target.value);
   };
   return (
     <div className="action-bar">
@@ -32,13 +31,22 @@ function ActionBar(props) {
         </div>
 
         <button onClick={props.handleMine} className="actionBtn">
-          Add Mine
+          Add Mines
         </button>
         <button className="actionBtn runBtn" onClick={handleDij}>
           Run Algo
         </button>
         <button onClick={props.handleClear} className="actionBtn clearBtn">
           Clear Grid
+        </button>
+        <button
+          style={{
+            color: !props.mousePressed ? "White" : "red",
+          }}
+          onClick={props.handleWall}
+          className="actionBtn clearBtn"
+        >
+          {!props.mousePressed ? "Enable Wall" : "Disenable Wall"}
         </button>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import Node from "./Node";
-import Dijkstra from "./algorithms/dijkstraAlgo";
 function Grid(props) {
   return (
     <div className="container">
@@ -11,7 +10,8 @@ function Grid(props) {
             key={node.key}
             handleWallClick={props.handleWallClick}
             node={node}
-            handleMouseUp={props.handleMouseUp}
+            drop={props.drop}
+            // handleClickWall={props.handleClickWall}
           />
         ))}
       </div>

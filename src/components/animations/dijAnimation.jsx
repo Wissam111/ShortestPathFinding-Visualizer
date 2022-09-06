@@ -10,6 +10,8 @@ function anitmationDij(nodes, rows, cols) {
       destNode = node;
     }
   });
+  console.log(startNode);
+  console.log();
   let resDij = Dijkstra(nodes, startNode, rows, cols, destNode);
   anitmationStart(resDij);
 }

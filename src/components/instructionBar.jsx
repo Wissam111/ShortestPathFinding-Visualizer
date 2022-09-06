@@ -43,6 +43,11 @@ function InstructionBar() {
           <i className="fa fa-square-o sp-icoon" aria-hidden="true"></i>{" "}
           Shortest Path
         </li>
+        <img
+          src={require("../imgs/techiesDance.gif")}
+          className="tec-dance"
+          alt=""
+        />
       </ul>
     </div>
   );

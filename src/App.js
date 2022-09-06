@@ -30,8 +30,7 @@ function App() {
     }
     setNodes(_nodes);
   }
-  // let audio = new Audio(require("./imgs/bombSound.mp3"));
-  // audio.play();
+
   React.useEffect(() => {
     createGrid();
   }, []);
@@ -41,7 +40,13 @@ function App() {
     }
 
     const updateWall = nodes.map((node) => {
-      if (node.row == row && node.col == col && !node.isMine) {
+      if (
+        node.row == row &&
+        node.col == col &&
+        !node.isMine &&
+        !node.isStart &&
+        !node.isEnd
+      ) {
         return { ...node, isWall: true };
       }
       return node;
@@ -49,11 +54,15 @@ function App() {
     setNodes(updateWall);
   }
   function handleClear() {
-    console.log("lol");
     createGrid();
+    for (let i = 0; i < nodes.length; i++) {
+      let node = nodes[i];
+      let nodeDom = document.getElementById(`node-${node.row}-${node.col}`);
+      nodeDom.className = "Node";
+    }
   }
 
-  function handleMouseUp() {
+  function handleWall() {
     setMousePressed(!mousePressed);
   }
 
@@ -67,18 +76,43 @@ function App() {
     for (let i = 0; i < 50; i++) {
       let randomId = getRandomInt(0, nodes.length - 1);
       let node = updateMinesNodes[randomId];
-      if (!node.isWall) {
-        let nodeDom = document.getElementById(`node-${node.row}-${node.col}`);
-        let img = document.createElement("img");
-        img.classList.add("node-mine");
-        img.src = require("./imgs/bomb.webp");
-        nodeDom.appendChild(img);
+      if (!node.isWall && !node.isMine) {
         node.isMine = true;
       }
     }
     setNodes(updateMinesNodes);
   }
+  const drop = (e) => {
+    e.preventDefault();
+    const node_id = e.dataTransfer.getData("node_id");
+    const node = document.getElementById(node_id);
+    node.style.display = "block";
+    e.target.appendChild(node);
+    let temp = e.target.id.split("-");
+    let i = parseInt(temp[1]);
+    let j = parseInt(temp[2]);
+    let _nodes = [...nodes];
+    let currNode = _nodes.find((n) => n.row == i && n.col == j);
+    setStartNode({ row: i, col: j });
+    // console.log(currNode);
 
+    // if (node.className.includes("src")) {
+    //   let sNode = _nodes.find((n) => n.isStart);
+    //   console.log(sNode.isMine);
+
+    //   // sNode.isStart = false;
+    //   currNode.isStart = true;
+    //   setStartNode({ row: i, col: j });
+    // } else {
+    //   let eNode = _nodes.find((n) => n.isEnd);
+    //   // eNode.isEnd = false;
+    //   currNode.isEnd = true;
+    //   setEndNode({ row: i, col: j });
+    // }
+    // // console.log(_nodes);
+
+    // setNodes(_nodes);
+  };
   return (
     <Fragment>
       <Navbar
@@ -87,11 +121,14 @@ function App() {
         cols={cols}
         handleClear={handleClear}
         handleMine={handleMine}
+        handleWall={handleWall}
+        mousePressed={mousePressed}
       />
       <Grid
         nodes={nodes}
         handleWallClick={handleWallClick}
-        handleMouseUp={handleMouseUp}
+        drop={drop}
+        // handleClickWall={handleClickWall}
       />
     </Fragment>
   );
