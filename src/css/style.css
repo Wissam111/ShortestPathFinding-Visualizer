@@ -63,7 +63,7 @@ body {
 }
 
 .node-sp {
-  background: #6db66d !important;
+  background-color: #6db66d !important;
 }
 
 .instruction {
@@ -81,6 +81,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
   gap: 2em;
   height: 100%;
   list-style: none;
@@ -104,12 +105,16 @@ body {
   border-radius: 0.1em;
 }
 
+.nav-bar {
+  margin-bottom: 1em;
+}
+
 .mine-logo {
   width: 20%;
 }
 
-.sp-icoon {
-  background: yellow;
+.sp-icon {
+  background: #6db66d;
 }
 
 .action-bar {
@@ -185,5 +190,23 @@ body {
   font-size: 1rem;
   margin-left: 0.3em;
   background: radial-gradient(ellipse at center, #4b77fb 0, rgba(75, 251, 181, 0) 100%);
+}
+
+.frog {
+  background-image: url("../imgs/frogZ.gif");
+  background-size: cover;
+  background-position: center;
+  background-color: green;
+}
+
+.tossCoinBtn {
+  position: relative;
+}
+
+.tossCoinBtn img {
+  width: 40%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 /*# sourceMappingURL=style.css.map */

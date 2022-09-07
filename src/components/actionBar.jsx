@@ -33,11 +33,12 @@ function ActionBar(props) {
         <button onClick={props.handleMine} className="actionBtn">
           Add Mines
         </button>
-        <button className="actionBtn runBtn" onClick={handleDij}>
-          Run Algo
-        </button>
+
         <button onClick={props.handleClear} className="actionBtn clearBtn">
           Clear Grid
+        </button>
+        <button className="actionBtn runBtn" onClick={handleDij}>
+          Run Algo
         </button>
         <button
           style={{
@@ -47,6 +48,14 @@ function ActionBar(props) {
           className="actionBtn clearBtn"
         >
           {!props.mousePressed ? "Enable Wall" : "Disenable Wall"}
+        </button>
+
+        <button
+          onClick={props.handleToss}
+          className="actionBtn clearBtn tossCoinBtn"
+        >
+          <img src={require("../imgs/tossCoin.gif")} alt="" />
+          Toss Coin
         </button>
       </div>
     </div>

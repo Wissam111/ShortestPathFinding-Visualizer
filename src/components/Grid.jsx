@@ -11,7 +11,6 @@ function Grid(props) {
             handleWallClick={props.handleWallClick}
             node={node}
             drop={props.drop}
-            // handleClickWall={props.handleClickWall}
           />
         ))}
       </div>

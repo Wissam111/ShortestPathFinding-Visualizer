@@ -40,8 +40,16 @@ function InstructionBar() {
           Unvisited Node
         </li>
         <li>
-          <i className="fa fa-square-o sp-icoon" aria-hidden="true"></i>{" "}
-          Shortest Path
+          <i className="fa fa-square-o sp-icon" aria-hidden="true"></i> Shortest
+          Path
+        </li>
+        <li>
+          <img
+            src={require("../imgs/healingSalve.png")}
+            alt=""
+            className="mine-logo"
+          />{" "}
+          Healing Salve
         </li>
         <img
           src={require("../imgs/techiesDance.gif")}

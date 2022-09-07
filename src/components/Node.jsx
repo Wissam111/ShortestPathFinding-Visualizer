@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useRef } from "react";
 import { useState } from "react";
 import Draggable from "react-draggable";
 function Node(props) {
-  const { id, value, visited, row, col, isWall, isStart, isEnd, isMine } =
-    props.node;
+  const {
+    id,
+    value,
+    visited,
+    row,
+    col,
+    isWall,
+    isStart,
+    isEnd,
+    isMine,
+    isSalve,
+  } = props.node;
 
-  // const drop = (e) => {
-  //   e.preventDefault();
-  //   const node_id = e.dataTransfer.getData("node_id");
-  //   const node = document.getElementById(node_id);
-  //   node.style.display = "block";
-  //   e.target.appendChild(node);
-  //   console.log(e.target);
-  // };
   const dragOver = (e) => {
     e.preventDefault();
   };
@@ -20,7 +22,6 @@ function Node(props) {
     const target = e.target;
     e.dataTransfer.setData("node_id", target.id);
     setTimeout(() => {
-      console.log(target);
       target.style.display = "none";
     }, 0);
   };
@@ -66,6 +67,12 @@ function Node(props) {
       )}
       {isMine && (
         <img className="node-mine" src={require("../imgs/bomb.webp")}></img>
+      )}
+      {isSalve && (
+        <img
+          className="node-mine"
+          src={require("../imgs/healingSalve.png")}
+        ></img>
       )}
     </div>
   );

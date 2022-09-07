@@ -13,6 +13,7 @@ function Navbar(props) {
         handleMine={props.handleMine}
         handleWall={props.handleWall}
         mousePressed={props.mousePressed}
+        handleToss={props.handleToss}
       />
       <InstructionBar />
     </div>

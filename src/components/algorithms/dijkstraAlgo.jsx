@@ -85,11 +85,23 @@ function relax(grid, dist, currNode, i, j, shortPaths, rows, cols) {
   let currWeight = currNode.value;
   let currNdPath = [...shortPaths[currNode.id].path];
   let neighborNode = grid.find((node) => node.row == i && node.col == j);
-  let plusW = neighborNode.isMine ? 10 : 1;
-  if (currWeight + plusW < neighborNode.value) {
+  let w;
+  let m = neighborNode.isSalve
+    ? currWeight > 3
+      ? -3
+      : 1
+    : neighborNode.isMine
+    ? 10
+    : 1;
+  w = currWeight + m;
+
+  if (neighborNode.isSalve) {
+    neighborNode.isSalve = false;
+  }
+  if (w < neighborNode.value) {
     currNdPath.push(neighborNode);
     shortPaths[neighborNode.id].path = currNdPath;
-    neighborNode.value = currWeight + plusW;
+    neighborNode.value = w;
     dist.splice(neighborNode.id, 0, neighborNode);
   }
 }

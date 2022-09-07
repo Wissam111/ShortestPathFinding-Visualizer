@@ -10,14 +10,13 @@ function anitmationDij(nodes, rows, cols) {
       destNode = node;
     }
   });
-  console.log(startNode);
-  console.log();
+
   let resDij = Dijkstra(nodes, startNode, rows, cols, destNode);
   anitmationStart(resDij);
 }
 export default anitmationDij;
 
-function anitmationStart(dijVisited) {
+async function anitmationStart(dijVisited) {
   for (let i = 0; i <= dijVisited._visited.length; i++) {
     if (i == dijVisited._visited.length) {
       setTimeout(() => {
@@ -33,12 +32,14 @@ function anitmationStart(dijVisited) {
   }
 }
 
-function anitmationSP(dijVisited) {
+async function anitmationSP(dijVisited) {
   for (let i = 0; i < dijVisited.shortPath.length; i++) {
-    setTimeout(() => {
-      const node = dijVisited.shortPath[i];
-      document.getElementById(`node-${node.row}-${node.col}`).className =
-        "Node node-sp";
-    }, 10 * i);
+    const node = dijVisited.shortPath[i];
+
+    let nodeDom = document.getElementById(`node-${node.row}-${node.col}`);
+    nodeDom.className = "Node node-sp frog";
+    await sleep(200);
+    nodeDom.classList.remove("frog");
   }
 }
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
