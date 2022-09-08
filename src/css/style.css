@@ -43,13 +43,12 @@ body {
 .grind-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (20px)[90];
-      grid-template-columns: repeat(90, 20px);
+  border: 2px solid red;
   width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 20em;
+  margin-bottom: 10em;
 }
 
 .Node-Enter {

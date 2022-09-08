@@ -1,26 +1,18 @@
-import Dijkstra from "../algorithms/dijkstraAlgo";
-
-function anitmationDij(nodes, rows, cols) {
-  let startNode = {};
-  let destNode = {};
-  nodes.forEach((node) => {
-    if (node.isStart) {
-      startNode = node;
-    } else if (node.isEnd) {
-      destNode = node;
-    }
-  });
-
-  let resDij = Dijkstra(nodes, startNode, rows, cols, destNode);
-  anitmationStart(resDij);
+// import Dijkstra from "../algorithms/dijkstraAlgo";
+// import AstartPathFinding from "../algorithms/AstartPathFindingAlgo";
+function Animation(algoResult) {
+  // let resDij = Dijkstra(nodes, startNode, rows, cols, destNode);
+  // let resDij = AstartPathFinding(nodes, startNode, destNode, rows, cols);
+  // console.log(resDij);
+  animationStart(algoResult);
 }
-export default anitmationDij;
+export default Animation;
 
-async function anitmationStart(dijVisited) {
+async function animationStart(dijVisited) {
   for (let i = 0; i <= dijVisited._visited.length; i++) {
     if (i == dijVisited._visited.length) {
       setTimeout(() => {
-        anitmationSP(dijVisited);
+        animationSP(dijVisited);
       }, 10 * i);
       return;
     }
@@ -32,7 +24,7 @@ async function anitmationStart(dijVisited) {
   }
 }
 
-async function anitmationSP(dijVisited) {
+async function animationSP(dijVisited) {
   for (let i = 0; i < dijVisited.shortPath.length; i++) {
     const node = dijVisited.shortPath[i];
 

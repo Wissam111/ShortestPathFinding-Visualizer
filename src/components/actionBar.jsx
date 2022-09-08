@@ -1,16 +1,41 @@
 import React, { Component, useState } from "react";
-import anitmationDij from "./animations/dijAnimation";
+import Animation from "./animations/Animation";
+import Dijkstra from "./algorithms/dijkstraAlgo";
 import BFSAnimation from "./animations/BfsAnimation";
+import AstartPathFinding from "./algorithms/AstartPathFindingAlgo";
 function ActionBar(props) {
   const [currAlgo, setCurrAlgo] = useState("dijkstra");
 
   const handleDij = () => {
+    let startNode = {};
+    let destNode = {};
+    props.nodes.forEach((node) => {
+      if (node.isStart) {
+        startNode = node;
+      } else if (node.isEnd) {
+        destNode = node;
+      }
+    });
     if (currAlgo == "dijkstra") {
-      anitmationDij(props.nodes, props.rows, props.cols);
+      let resDij = Dijkstra(
+        props.nodes,
+        startNode,
+        props.rows,
+        props.cols,
+        destNode
+      );
+      Animation(resDij);
     } else if (currAlgo == "BFS") {
       BFSAnimation(props.nodes, props.rows, props.cols);
     } else {
-      console.log("DFS");
+      let resAstart = AstartPathFinding(
+        props.nodes,
+        startNode,
+        props.rows,
+        props.cols,
+        destNode
+      );
+      Animation(resAstart);
     }
   };
 
@@ -25,7 +50,7 @@ function ActionBar(props) {
           <label>Pick Algo:</label>
           <select id="algos" name="algos" onChange={handleSelectAlgo}>
             <option value="dijkstra">Dijkstra</option>
-            <option value="DFS">DFS</option>
+            <option value="A*Pathfinding">A*Pathfinding</option>
             <option value="BFS">BFS</option>
           </select>
         </div>

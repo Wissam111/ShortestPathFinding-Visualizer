@@ -1,8 +1,8 @@
+import MinHeap from "../data-structure/MinHeap";
 function Dijkstra(grid, startNode, rows, cols, endNode) {
-  let distances = [];
-
+  let distances = new MinHeap();
+  distances.insert(startNode);
   let _visited = [];
-  distances.splice(startNode.id, 0, startNode);
   let shortPaths = [];
   for (let i = 0; i < grid.length; i++) {
     let obN = { path: [] };
@@ -11,8 +11,7 @@ function Dijkstra(grid, startNode, rows, cols, endNode) {
   }
 
   while (distances != 0) {
-    distances.sort(compare);
-    let currNode = distances.shift();
+    let currNode = distances.extractMin();
 
     if (currNode.row == endNode.row && currNode.col == endNode.col) {
       break;
@@ -68,16 +67,6 @@ function Dijkstra(grid, startNode, rows, cols, endNode) {
   return { _visited: _visited, shortPath: spDest };
 }
 
-function compare(a, b) {
-  if (a.value < b.value) {
-    return -1;
-  }
-  if (a.value > b.value) {
-    return 1;
-  }
-  return 0;
-}
-
 function relax(grid, dist, currNode, i, j, shortPaths, rows, cols) {
   if (i >= rows || j >= cols || i < 0 || j < 0) {
     return;
@@ -102,7 +91,7 @@ function relax(grid, dist, currNode, i, j, shortPaths, rows, cols) {
     currNdPath.push(neighborNode);
     shortPaths[neighborNode.id].path = currNdPath;
     neighborNode.value = w;
-    dist.splice(neighborNode.id, 0, neighborNode);
+    dist.insert(neighborNode);
   }
 }
 export default Dijkstra;

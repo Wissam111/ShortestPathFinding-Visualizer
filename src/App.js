@@ -7,8 +7,9 @@ function App() {
   const [startNode, setStartNode] = useState({ row: 15, col: 30 });
   const [endNode, setEndNode] = useState({ row: 15, col: 50 });
   const [isTossed, setIsTossed] = useState(0);
-  const rows = 30;
-  const cols = 90;
+  const [rows, setRows] = useState(30);
+  const [cols, setCols] = useState(90);
+
   function createGrid() {
     let _nodes = [];
     let count = 0;
@@ -26,6 +27,8 @@ function App() {
           isEnd: i == endNode.row && j == endNode.col,
           isMine: false,
           isSalve: false,
+          gCost: i == startNode.row && j == startNode.col ? 0 : Infinity,
+          hCost: null,
         });
         count++;
       }
@@ -134,6 +137,11 @@ function App() {
 
     setNodes(_nodes);
   };
+
+  function handleWidthChange(newWidth) {
+    setCols(newWidth);
+  }
+
   return (
     <Fragment>
       <Navbar
@@ -146,7 +154,12 @@ function App() {
         mousePressed={mousePressed}
         handleToss={handleToss}
       />
-      <Grid nodes={nodes} handleWallClick={handleWallClick} drop={drop} />
+      <Grid
+        nodes={nodes}
+        handleWallClick={handleWallClick}
+        drop={drop}
+        onChange={handleWidthChange}
+      />
     </Fragment>
   );
 }
