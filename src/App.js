@@ -138,9 +138,7 @@ function App() {
     setNodes(_nodes);
   };
 
-  function handleWidthChange(newWidth) {
-    setCols(newWidth);
-  }
+
 
   return (
     <Fragment>
@@ -158,7 +156,9 @@ function App() {
         nodes={nodes}
         handleWallClick={handleWallClick}
         drop={drop}
-        onChange={handleWidthChange}
+        cols = {cols}
+        rows={rows}
+        
       />
     </Fragment>
   );

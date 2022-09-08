@@ -5,14 +5,15 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.container {
+.container-gridLayout {
   width: 100%;
-  height: 100vh;
+ height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
+  border: 2px solid yellow;
 }
 .Node {
   background-color: #1d1d1d;
@@ -29,11 +30,12 @@ body {
 }
 .grind-container {
   display: grid;
-  // grid-template-columns: repeat(90, 20px);
+  grid-template-columns: repeat(90, 20px);
   border: 2px solid red;
   width: 100%;
+  height: 80%;
   justify-content: center;
-  margin-bottom: 10em;
+  margin-bottom: 5em;
 }
 .Node-Enter {
   background: gray;
@@ -72,6 +74,7 @@ body {
 }
 
 .nav-bar {
+  border: 2px solid red;
   margin-bottom: 1em;
 }
 .mine-logo {
@@ -177,3 +180,6 @@ body {
     top: 0;
   }
 }
+// .widthDisplay{
+//   display: none;
+// }
