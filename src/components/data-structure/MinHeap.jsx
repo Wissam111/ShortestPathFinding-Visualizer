@@ -1,3 +1,5 @@
+/* MinHeap DataStructure implementation */
+
 function MinHeap() {
   this.data = [];
 }

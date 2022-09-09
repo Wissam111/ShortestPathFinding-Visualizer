@@ -1,8 +1,9 @@
-function BFS(nodes, rows, cols, startNode, endNode) {
+/* BFS Algorithm implementation */
+
+function BFS(grid, startNode, rows, cols, endNode) {
   let exploreList = [];
   exploreList.push(startNode);
   let visitedNodes = [];
-  //   console.log(exploreList);
   while (exploreList != 0) {
     let currNode = exploreList.shift();
     if (currNode.row == endNode.row && currNode.col == endNode.col) {
@@ -14,18 +15,20 @@ function BFS(nodes, rows, cols, startNode, endNode) {
 
     visitedNodes.push(currNode);
 
-    Explore(nodes, exploreList, rows, cols, currNode.row + 1, currNode.col);
-    Explore(nodes, exploreList, rows, cols, currNode.row - 1, currNode.col);
-    Explore(nodes, exploreList, rows, cols, currNode.row, currNode.col + 1);
-    Explore(nodes, exploreList, rows, cols, currNode.row, currNode.col - 1);
+    Explore(grid, exploreList, rows, cols, currNode.row + 1, currNode.col);
+    Explore(grid, exploreList, rows, cols, currNode.row - 1, currNode.col);
+    Explore(grid, exploreList, rows, cols, currNode.row, currNode.col + 1);
+    Explore(grid, exploreList, rows, cols, currNode.row, currNode.col - 1);
   }
-  console.log(visitedNodes);
-  return visitedNodes;
+  return { _visited: visitedNodes, shortPath: [] };
 }
 export default BFS;
-function Explore(nodes, exploreList, rows, cols, i, j) {
-  let neighborNode = nodes.find((node) => node.row == i && node.col == j);
-  if (i >= rows || j >= cols || i < 0 || j < 0 || neighborNode.visited) {
+function Explore(grid, exploreList, rows, cols, i, j) {
+  if (i >= rows || j >= cols || i < 0 || j < 0) {
+    return;
+  }
+  let neighborNode = grid[i][j];
+  if (neighborNode.visited) {
     return;
   }
   neighborNode.visited = true;

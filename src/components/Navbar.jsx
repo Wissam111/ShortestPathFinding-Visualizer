@@ -6,9 +6,11 @@ function Navbar(props) {
   return (
     <div className="nav-bar">
       <ActionBar
-        nodes={props.nodes}
+        grid={props.grid}
         rows={props.rows}
         cols={props.cols}
+        startNode={props.startNode}
+        endNode={props.endNode}
         handleClear={props.handleClear}
         handleMine={props.handleMine}
         handleWall={props.handleWall}

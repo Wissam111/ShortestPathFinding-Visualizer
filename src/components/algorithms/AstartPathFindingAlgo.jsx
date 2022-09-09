@@ -3,7 +3,6 @@ import MinHeap from "../data-structure/MinHeap";
 const moveStaight = 10;
 const moveDiagonal = 14;
 let distances = new MinHeap();
-let closeList = [];
 let shortPaths = [];
 
 //fCost is value
@@ -11,10 +10,12 @@ let shortPaths = [];
 function AstartPathFinding(grid, startNode, rows, cols, endNode) {
   distances.insert(startNode);
   let _visited = [];
-  for (let i = 0; i < grid.length; i++) {
-    let obN = { path: [] };
-    obN.path.push(startNode);
-    shortPaths.splice(grid[i].id, 0, obN);
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let obN = { path: [] };
+      obN.path.push(startNode);
+      shortPaths.splice(grid[i][j].id, 0, obN);
+    }
   }
   startNode.hCost = CalculateDistanceCost(startNode, endNode);
   startNode.value = startNode.gCost + startNode.hCost;
@@ -41,7 +42,7 @@ function AstartPathFinding(grid, startNode, rows, cols, endNode) {
       let m = neighborNode.isSalve
         ? cost > 3
           ? -3
-          : 1
+          : 0
         : neighborNode.isMine
         ? 10
         : 1;
@@ -88,8 +89,7 @@ function insertNode(grid, i, j, neighborsList, rows, cols) {
     return;
   }
 
-  let neighborNode = grid.find((node) => node.row == i && node.col == j);
-  console.log(neighborNode);
+  // let neighborNode = grid.find((node) => node.row == i && node.col == j);
+  let neighborNode = grid[i][j];
   neighborsList.push(neighborNode);
-  //   return neighborNode;
 }

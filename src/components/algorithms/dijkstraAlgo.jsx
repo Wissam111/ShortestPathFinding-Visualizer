@@ -1,13 +1,18 @@
+/* Dijksta Algorithm implementation */
+
 import MinHeap from "../data-structure/MinHeap";
 function Dijkstra(grid, startNode, rows, cols, endNode) {
   let distances = new MinHeap();
   distances.insert(startNode);
   let _visited = [];
   let shortPaths = [];
-  for (let i = 0; i < grid.length; i++) {
-    let obN = { path: [] };
-    obN.path.push(startNode);
-    shortPaths.splice(grid[i].id, 0, obN);
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      let obN = { path: [] };
+      obN.path.push(startNode);
+      shortPaths.splice(grid[i][j].id, 0, obN);
+    }
   }
 
   while (distances != 0) {
@@ -73,12 +78,12 @@ function relax(grid, dist, currNode, i, j, shortPaths, rows, cols) {
   }
   let currWeight = currNode.value;
   let currNdPath = [...shortPaths[currNode.id].path];
-  let neighborNode = grid.find((node) => node.row == i && node.col == j);
+  let neighborNode = grid[i][j];
   let w;
   let m = neighborNode.isSalve
     ? currWeight > 3
       ? -3
-      : 1
+      : 0
     : neighborNode.isMine
     ? 10
     : 1;

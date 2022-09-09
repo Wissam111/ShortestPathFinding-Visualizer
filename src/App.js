@@ -2,20 +2,24 @@ import React, { Component, Fragment, useState } from "react";
 import Grid from "./components/Grid";
 import Navbar from "./components/Navbar";
 function App() {
-  const [nodes, setNodes] = useState([]);
+  // const [nodes, setNodes] = useState([]);
+  const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(0);
   const [startNode, setStartNode] = useState({ row: 15, col: 30 });
   const [endNode, setEndNode] = useState({ row: 15, col: 50 });
   const [isTossed, setIsTossed] = useState(0);
-  const [rows, setRows] = useState(30);
-  const [cols, setCols] = useState(90);
+  const rows = 30;
+  const cols = 80;
 
+  /*initialize the grid */
   function createGrid() {
-    let _nodes = [];
+    // let _nodes = [];
+    let _grid = [];
     let count = 0;
     for (let i = 0; i < rows; i++) {
+      let currPath = [];
       for (let j = 0; j < cols; j++) {
-        _nodes.push({
+        let n = {
           key: count,
           id: count,
           value: i == startNode.row && j == startNode.col ? 0 : Infinity,
@@ -29,42 +33,48 @@ function App() {
           isSalve: false,
           gCost: i == startNode.row && j == startNode.col ? 0 : Infinity,
           hCost: null,
-        });
+        };
+        currPath.push(n);
         count++;
       }
+      _grid.push(currPath);
     }
-    setNodes(_nodes);
+    setGrid(_grid);
   }
 
   React.useEffect(() => {
     createGrid();
   }, []);
+
+  /*adding wall on the grid */
   function handleWallClick(row, col) {
     if (!mousePressed) {
       return;
     }
+    let tempGrid = [...grid];
+    let node = grid[row][col];
+    if (
+      node.row == row &&
+      node.col == col &&
+      !node.isMine &&
+      !node.isStart &&
+      !node.isEnd &&
+      !node.isSalve
+    ) {
+      node.isWall = true;
+    }
 
-    const updateWall = nodes.map((node) => {
-      if (
-        node.row == row &&
-        node.col == col &&
-        !node.isMine &&
-        !node.isStart &&
-        !node.isEnd &&
-        !node.isSalve
-      ) {
-        return { ...node, isWall: true };
-      }
-      return node;
-    });
-    setNodes(updateWall);
+    setGrid(tempGrid);
   }
+
+  /*clear the grid function */
   function handleClear() {
     createGrid();
-    for (let i = 0; i < nodes.length; i++) {
-      let node = nodes[i];
-      let nodeDom = document.getElementById(`node-${node.row}-${node.col}`);
-      nodeDom.className = "Node";
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        let nodeDom = document.getElementById(`node-${i}-${j}`);
+        nodeDom.className = "Node";
+      }
     }
     setIsTossed(0);
   }
@@ -78,76 +88,83 @@ function App() {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
   }
+
+  /*place mins on the grid and update the nodes */
   function handleMine() {
-    let updateMinesNodes = [...nodes];
+    let updateMinesNodes = [...grid];
     for (let i = 0; i < 40; i++) {
-      let randomId = getRandomInt(0, nodes.length - 1);
-      let node = updateMinesNodes[randomId];
-      if ((!node.isWall && !node.isMine) || !node.isSalve) {
+      let randomRow = getRandomInt(0, rows - 1);
+      let randomCol = getRandomInt(0, cols - 1);
+      let node = updateMinesNodes[randomRow][randomCol];
+      if (!node.isWall && !node.isMine && !node.isSalve) {
         node.isMine = true;
       }
     }
-    setNodes(updateMinesNodes);
+    setGrid(updateMinesNodes);
   }
+  /*place healing Salves randomly on the grid and update the nodes (only once)*/
   function handleToss() {
     if (isTossed) {
       return;
     }
-    let updateSalvesNodes = [...nodes];
+    let updateSalvesNodes = [...grid];
     let tossRes = getRandomInt(60, 70);
     for (let i = 0; i < tossRes; i++) {
-      let randomId = getRandomInt(0, nodes.length - 1);
-      let node = updateSalvesNodes[randomId];
+      let randomRow = getRandomInt(0, rows - 1);
+      let randomCol = getRandomInt(0, cols - 1);
+      let node = updateSalvesNodes[randomRow][randomCol];
       if (!node.isWall && !node.isMine && !node.isSalve) {
         node.isSalve = true;
       }
     }
     setIsTossed(1);
-    setNodes(updateSalvesNodes);
+    setGrid(updateSalvesNodes);
   }
 
+  /*handle drop src/dest nodes on other nodes */
   const drop = (e) => {
     e.preventDefault();
+
     const node_id = e.dataTransfer.getData("node_id");
     const node = document.getElementById(node_id);
     node.style.display = "block";
     let temp = e.target.id.split("-");
     let i = parseInt(temp[1]);
     let j = parseInt(temp[2]);
-    let _nodes = [...nodes];
-    let currNode = _nodes.find((n) => n.row == i && n.col == j);
-
-    if (currNode.isWall || currNode.isMine) {
+    let _nodes = [...grid];
+    let currNode = _nodes[i][j];
+    if (currNode.isWall || currNode.isMine || currNode.isSalve) {
       return;
     }
 
     if (node.className.includes("src")) {
-      let sNode = _nodes.find((n) => n.isStart);
+      let sNode = _nodes[startNode.row][startNode.col];
       sNode.isStart = false;
       sNode.value = Infinity;
+      sNode.gCost = Infinity;
       currNode.isStart = true;
       currNode.value = 0;
+      currNode.gCost = 0;
+
       setStartNode({ row: i, col: j });
     } else {
-      let eNode = _nodes.find((n) => n.isEnd);
+      let eNode = _nodes[endNode.row][endNode.col];
       eNode.isEnd = false;
       currNode.isEnd = true;
       setEndNode({ row: i, col: j });
     }
 
-    setNodes(_nodes);
+    setGrid(_nodes);
   };
-
-  function handleWidthChange(newWidth) {
-    setCols(newWidth);
-  }
 
   return (
     <Fragment>
       <Navbar
-        nodes={nodes}
+        grid={grid}
         rows={rows}
         cols={cols}
+        startNode={startNode}
+        endNode={endNode}
         handleClear={handleClear}
         handleMine={handleMine}
         handleWall={handleWall}
@@ -155,10 +172,11 @@ function App() {
         handleToss={handleToss}
       />
       <Grid
-        nodes={nodes}
+        grid={grid}
+        cols={cols}
+        rows={rows}
         handleWallClick={handleWallClick}
         drop={drop}
-        onChange={handleWidthChange}
       />
     </Fragment>
   );

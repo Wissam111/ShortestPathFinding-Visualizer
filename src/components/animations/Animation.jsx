@@ -1,9 +1,6 @@
-// import Dijkstra from "../algorithms/dijkstraAlgo";
-// import AstartPathFinding from "../algorithms/AstartPathFindingAlgo";
+/*Animation component */
+
 function Animation(algoResult) {
-  // let resDij = Dijkstra(nodes, startNode, rows, cols, destNode);
-  // let resDij = AstartPathFinding(nodes, startNode, destNode, rows, cols);
-  // console.log(resDij);
   animationStart(algoResult);
 }
 export default Animation;

@@ -1,19 +1,8 @@
 import React, { Component, useEffect, useRef } from "react";
-import { useState } from "react";
-import Draggable from "react-draggable";
 function Node(props) {
-  const {
-    id,
-    value,
-    visited,
-    row,
-    col,
-    isWall,
-    isStart,
-    isEnd,
-    isMine,
-    isSalve,
-  } = props.node;
+  const { row, col, isWall, isStart, isEnd, isMine, isSalve } = props.node;
+
+  /*Node componet on the grid */
 
   const dragOver = (e) => {
     e.preventDefault();

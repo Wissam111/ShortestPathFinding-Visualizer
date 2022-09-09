@@ -1,39 +1,28 @@
 import React, { Component, useState } from "react";
 import Animation from "./animations/Animation";
-import Dijkstra from "./algorithms/dijkstraAlgo";
-import BFSAnimation from "./animations/BfsAnimation";
+import Dijkstra from "./algorithms/DijkstraAlgo";
 import AstartPathFinding from "./algorithms/AstartPathFindingAlgo";
+import BFS from "./algorithms/BFS";
 function ActionBar(props) {
   const [currAlgo, setCurrAlgo] = useState("dijkstra");
-
+  const { grid, rows, cols, startNode, endNode } = props;
   const handleDij = () => {
-    let startNode = {};
-    let destNode = {};
-    props.nodes.forEach((node) => {
-      if (node.isStart) {
-        startNode = node;
-      } else if (node.isEnd) {
-        destNode = node;
-      }
-    });
+    let _startNode = grid[startNode.row][startNode.col];
+    let _destNode = grid[endNode.row][endNode.col];
+    console.log(_startNode);
     if (currAlgo == "dijkstra") {
-      let resDij = Dijkstra(
-        props.nodes,
-        startNode,
-        props.rows,
-        props.cols,
-        destNode
-      );
+      let resDij = Dijkstra(grid, _startNode, rows, cols, _destNode);
       Animation(resDij);
     } else if (currAlgo == "BFS") {
-      BFSAnimation(props.nodes, props.rows, props.cols);
+      let bfsOrder = BFS(grid, _startNode, rows, cols, _destNode);
+      Animation(bfsOrder);
     } else {
       let resAstart = AstartPathFinding(
-        props.nodes,
-        startNode,
-        props.rows,
-        props.cols,
-        destNode
+        grid,
+        _startNode,
+        rows,
+        cols,
+        _destNode
       );
       Animation(resAstart);
     }
