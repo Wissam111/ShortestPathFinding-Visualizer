@@ -5,20 +5,18 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.gridgridcontainer-layout-layout {
+.gridcontainer-layout {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  // border: 2px solid red;
-  // border: 2px solid red;
+
   margin: 0;
   padding: 0;
   position: relative;
 }
 .row {
-  // border: 2px solid red;
   display: flex;
 }
 .Node {
@@ -35,13 +33,8 @@ body {
   }
 }
 .grind-container {
-  // display: grid;
-  // grid-template-columns: repeat(90, 20px);
-  // border: 2px solid red;
   width: 100%;
-  // height: 100vh;
   justify-content: center;
-  // margin-bottom: 10em;
   display: flex;
   flex-direction: column;
   align-items: center;

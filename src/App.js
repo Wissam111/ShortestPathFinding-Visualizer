@@ -2,7 +2,6 @@ import React, { Component, Fragment, useState } from "react";
 import Grid from "./components/Grid";
 import Navbar from "./components/Navbar";
 function App() {
-  // const [nodes, setNodes] = useState([]);
   const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(0);
   const [startNode, setStartNode] = useState({ row: 15, col: 30 });
@@ -13,11 +12,9 @@ function App() {
 
   /*initialize the grid */
   function createGrid() {
-    // let _nodes = [];
     let _grid = [];
     let count = 0;
     for (let i = 0; i < rows; i++) {
-      let currPath = [];
       let currPath = [];
       for (let j = 0; j < cols; j++) {
         let n = {
@@ -38,7 +35,6 @@ function App() {
         currPath.push(n);
         count++;
       }
-      _grid.push(currPath);
       _grid.push(currPath);
     }
     setGrid(_grid);
@@ -110,7 +106,7 @@ function App() {
       return;
     }
     let updateSalvesNodes = [...grid];
-    let tossRes = getRandomInt(60, 70);
+    let tossRes = getRandomInt(50, 80);
     for (let i = 0; i < tossRes; i++) {
       let randomRow = getRandomInt(0, rows - 1);
       let randomCol = getRandomInt(0, cols - 1);
