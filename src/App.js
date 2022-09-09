@@ -3,19 +3,22 @@ import Grid from "./components/Grid";
 import Navbar from "./components/Navbar";
 function App() {
   const [nodes, setNodes] = useState([]);
+  const [grid , setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(0);
   const [startNode, setStartNode] = useState({ row: 15, col: 30 });
   const [endNode, setEndNode] = useState({ row: 15, col: 50 });
   const [isTossed, setIsTossed] = useState(0);
-  const [rows, setRows] = useState(30);
-  const [cols, setCols] = useState(90);
+  const [rows, setRows] = useState(25);
+  const [cols, setCols] = useState(70);
 
   function createGrid() {
     let _nodes = [];
+    let _grid = [];
     let count = 0;
     for (let i = 0; i < rows; i++) {
+      let currPath = [];
       for (let j = 0; j < cols; j++) {
-        _nodes.push({
+       let n = {
           key: count,
           id: count,
           value: i == startNode.row && j == startNode.col ? 0 : Infinity,
@@ -29,10 +32,14 @@ function App() {
           isSalve: false,
           gCost: i == startNode.row && j == startNode.col ? 0 : Infinity,
           hCost: null,
-        });
+        };
+        _nodes.push(n);
+        currPath.push(n);
         count++;
       }
+      _grid.push(currPath);
     }
+    setGrid(_grid);
     setNodes(_nodes);
   }
 
@@ -153,11 +160,12 @@ function App() {
         handleToss={handleToss}
       />
       <Grid
-        nodes={nodes}
-        handleWallClick={handleWallClick}
-        drop={drop}
+        grid={grid}
         cols = {cols}
         rows={rows}
+        handleWallClick={handleWallClick}
+        drop={drop}
+        
         
       />
     </Fragment>
