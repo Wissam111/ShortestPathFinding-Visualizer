@@ -1,12 +1,41 @@
-# Getting Started with Create React App
+# Shortest Path - Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Builds](https://github.com/project-chip/connectedhomeip/workflows/Builds/badge.svg)
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+
+
+## The Project In Action
+
+-Dijkstra
+
+https://user-images.githubusercontent.com/70629274/189345348-db722912-f457-49f0-a9f5-e8e592e2bc2f.mp4
+
+-A*pathFinding
+
+
+https://user-images.githubusercontent.com/70629274/189345444-2d63d420-38d1-43cd-be51-012b270dbf37.mp4
+
+
+
+
+</br>
+
+## Project Overview
+
+ Shortest Path-Visualizer, The objective is to find the shortest path from src Node
+ to dest Node with obstacles and rewards along the way.
+
+</br>
+
+## How To Run
+ 
+
+From the terminal run the server:  
+
+- npm install npm 
+- npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,57 +43,45 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+</br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## What has been done ?
+- ### Visulaizer
+    
+    - Mines: increase the weight of an Edge by 10
+    - Healing Salve: decrease the weight of current node by 3
+    - Toss Coin: Choose randomly a number between [50,80] for how many Healing Salves
+                 to place randomly on the grid(at can be only done once)
+    - Shortest Path: at the end showes the shortest path colored by green.
+    - Wall: add Node wall that cant be visited 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ### Data Structures
 
-### `npm run eject`
+    - Min Heap
+    - List
+    
+- ### Graph Algorithms
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - Dijkstra
+    - A*PathFinding
+    - BFS
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Authors
 
-## Learn More
+* **Wissam Kabha**  - Linkdin -> https://www.linkedin.com/in/wissam-kabha-7a20b1226/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## References
 
-### Code Splitting
+https://en.wikipedia.org/wiki/A*_search_algorithm#:~:text=A*%20is%20an%20informed%20search,shortest%20time%2C%20etc.).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://en.wikipedia.org/wiki/Min-max_heap
