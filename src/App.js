@@ -18,6 +18,7 @@ function App() {
     let count = 0;
     for (let i = 0; i < rows; i++) {
       let currPath = [];
+      let currPath = [];
       for (let j = 0; j < cols; j++) {
         let n = {
           key: count,
@@ -37,6 +38,7 @@ function App() {
         currPath.push(n);
         count++;
       }
+      _grid.push(currPath);
       _grid.push(currPath);
     }
     setGrid(_grid);
